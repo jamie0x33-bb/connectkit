@@ -50,6 +50,14 @@ def list_connectors(rt: Runtime | None = None) -> list[dict]:
     return request(rt or load(), "GET", "/rest/connector-service/connectors").get("connectors", [])
 
 
+def tool_names(source_id: str, rt: Runtime | None = None) -> list[str]:
+    """Tool names for one connector, from the listing rather than a describe call."""
+    for c in list_connectors(rt):
+        if c.get("source_id") == source_id:
+            return [t.get("name") for t in c.get("tools", [])]
+    return []
+
+
 def connected(rt: Runtime | None = None) -> list[dict]:
     return [c for c in list_connectors(rt) if c.get("status") == "CONNECTED"]
 
