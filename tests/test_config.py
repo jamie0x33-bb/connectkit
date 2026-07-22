@@ -15,3 +15,9 @@ def test_headers_carry_the_target_base_url(monkeypatch):
     h = config.load().headers()
     assert h["X-Base-Url"] == "http://internal:5556"
     assert h["x-app-apiclient"] == "asi-sandbox"
+
+
+def test_workspace_bearer_prefers_the_proxy_token(monkeypatch):
+    monkeypatch.setenv("PPLX_AGENT_PROXY_TOKEN", "agp_a")
+    monkeypatch.setenv("PPLX_CONNECTOR_API_KEY", "agp_b")
+    assert config.workspace_bearer() == "agp_a"
