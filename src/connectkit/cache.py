@@ -37,6 +37,12 @@ def put(key: str, value) -> None:
     tmp.replace(_path(key))
 
 
+def keys() -> list[str]:
+    if not CACHE_DIR.exists():
+        return []
+    return sorted(p.stem for p in CACHE_DIR.glob("*.json"))
+
+
 def clear() -> int:
     if not CACHE_DIR.exists():
         return 0
