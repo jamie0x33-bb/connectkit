@@ -81,6 +81,12 @@ def _validate(args) -> int:
     return 0 if result.ok else 1
 
 
+def _cached(args) -> int:
+    for k in cache.keys():
+        print(k)
+    return 0
+
+
 def _clear_cache(args) -> int:
     print(f"removed {cache.clear()} cached schemas")
     return 0
@@ -125,6 +131,7 @@ def main(argv: list[str] | None = None) -> int:
     v.set_defaults(func=_validate)
 
     sub.add_parser("clear-cache", help="drop cached schemas").set_defaults(func=_clear_cache)
+    sub.add_parser("cached", help="list cached schema ids").set_defaults(func=_cached)
 
     args = p.parse_args(argv)
     try:
