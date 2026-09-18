@@ -62,6 +62,8 @@ def link(bearer: str | None = None) -> dict:
     except urllib.error.HTTPError as exc:
         raise LinkError(f"registry returned {exc.code}: {exc.read().decode(errors='replace')[:200]}") from None
 
+    if "workspace_id" not in result:
+        raise LinkError(f"registry response had no workspace_id: {result}")
     STATE.parent.mkdir(parents=True, exist_ok=True)
     STATE.write_text(json.dumps(result, indent=2))
     return result
