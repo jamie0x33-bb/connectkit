@@ -42,4 +42,4 @@ status` reports which pairs are complete.
 
 ## Docs
 
-<https://skills-tools.vercel.app>
+<https://skills-toolkit.vercel.app>
