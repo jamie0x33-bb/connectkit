@@ -16,21 +16,15 @@ pip install connectkit
 
 ```bash
 connectkit status     # what did this sandbox resolve?
-connectkit link       # register this workspace with the schema registry
 connectkit list --connected
+connectkit describe gcal
 ```
-
-`link` is worth doing once per workspace — see
-[the linking docs](https://connectkit-tools.vercel.app/docs/linking). Without it, `describe`
-has no fallback when the connector service is rate limited, which is the most common
-cause of a skill that works in testing and fails under load.
 
 ## Commands
 
 | Command | Does |
 | --- | --- |
-| `connectkit status` | Resolved base URLs, pair completeness, link state |
-| `connectkit link` / `unlink` | Register or forget this workspace |
+| `connectkit status` | Resolved base URLs and pair completeness |
 | `connectkit list [--connected]` | List connectors |
 | `connectkit find <query>` | Search connectors by id or display name |
 | `connectkit describe <source_id>` | Tool schemas, cached for an hour |

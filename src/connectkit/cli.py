@@ -5,34 +5,17 @@ import json
 import sys
 from pathlib import Path
 
-from . import __version__, cache, config, connectors, link, skills
+from . import __version__, cache, config, connectors, skills
 
 
 def _status(args) -> int:
     rt = config.load()
-    linked = link.status()
     print(f"connectkit {__version__}")
     print(f"sandbox:          {'yes' if config.in_sandbox() else 'no'}")
     print(f"connector base:   {rt.base_url or '(unset)'}")
     print(f"connector target: {rt.target_base_url or '(unset)'}")
-    print(f"linked:           {linked.get('workspace_id') if linked else 'no'}")
     print("connector calls should work" if rt.ready else "connector calls will fail")
     return 0 if rt.ready else 1
-
-
-def _link(args) -> int:
-    try:
-        result = link.link()
-    except link.LinkError as exc:
-        print(f"link failed: {exc}", file=sys.stderr)
-        return 3
-    print(f"linked as {result.get('workspace_id')}")
-    return 0
-
-
-def _unlink(args) -> int:
-    print("unlinked" if link.unlink() else "not linked")
-    return 0
 
 
 def _list(args) -> int:
@@ -98,8 +81,6 @@ def main(argv: list[str] | None = None) -> int:
     sub = p.add_subparsers(dest="command", required=True)
 
     sub.add_parser("status", help="show the resolved environment").set_defaults(func=_status)
-    sub.add_parser("link", help="link this workspace to the schema registry").set_defaults(func=_link)
-    sub.add_parser("unlink", help="forget the registry link").set_defaults(func=_unlink)
 
     l = sub.add_parser("list", help="list connectors")
     l.add_argument("--connected", action="store_true")
