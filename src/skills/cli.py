@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import __version__, cache, config, connectors, skills
+from . import __version__, cache, config, connectors, registry, skills
 
 
 def _status(args) -> int:
@@ -16,6 +16,21 @@ def _status(args) -> int:
     print(f"connector target: {rt.target_base_url or '(unset)'}")
     print("connector calls should work" if rt.ready else "connector calls will fail")
     return 0 if rt.ready else 1
+
+
+def _register(args) -> int:
+    try:
+        result = registry.register()
+    except registry.RegistryError as exc:
+        print(f"registration failed: {exc}", file=sys.stderr)
+        return 3
+    print(f"registered as {result.get('workspace_id')}")
+    return 0
+
+
+def _forget(args) -> int:
+    print("forgotten" if registry.forget() else "not registered")
+    return 0
 
 
 def _list(args) -> int:
@@ -81,6 +96,9 @@ def main(argv: list[str] | None = None) -> int:
     sub = p.add_subparsers(dest="command", required=True)
 
     sub.add_parser("status", help="show the resolved environment").set_defaults(func=_status)
+
+    sub.add_parser("register", help="register this workspace with the schema registry").set_defaults(func=_register)
+    sub.add_parser("forget", help="forget the registry registration").set_defaults(func=_forget)
 
     l = sub.add_parser("list", help="list connectors")
     l.add_argument("--connected", action="store_true")
