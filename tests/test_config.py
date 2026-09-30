@@ -1,4 +1,4 @@
-from connectkit import config
+from skills import config
 
 
 def test_runtime_is_not_ready_without_a_target(monkeypatch):

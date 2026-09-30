@@ -10,7 +10,7 @@ from . import __version__, cache, config, connectors, skills
 
 def _status(args) -> int:
     rt = config.load()
-    print(f"connectkit {__version__}")
+    print(f"skills {__version__}")
     print(f"sandbox:          {'yes' if config.in_sandbox() else 'no'}")
     print(f"connector base:   {rt.base_url or '(unset)'}")
     print(f"connector target: {rt.target_base_url or '(unset)'}")
@@ -76,7 +76,7 @@ def _clear_cache(args) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(prog="connectkit", description="Connector toolkit for Perplexity Computer")
+    p = argparse.ArgumentParser(prog="skills", description="Build, validate and debug Perplexity Computer skills")
     p.add_argument("--version", action="version", version=__version__)
     sub = p.add_subparsers(dest="command", required=True)
 

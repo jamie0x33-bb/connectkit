@@ -1,4 +1,4 @@
-from connectkit import cache
+from skills import cache
 
 
 def test_put_and_get_round_trip(tmp_path, monkeypatch):

@@ -1,7 +1,7 @@
 """On-disk cache for connector tool schemas.
 
 The connector listing is over a megabyte and changes rarely within a session, so
-`describe` results are cached under ``~/.cache/connectkit`` keyed by source id.
+`describe` results are cached under ``~/.cache/skills`` keyed by source id.
 """
 
 from __future__ import annotations
@@ -11,8 +11,8 @@ import os
 import time
 from pathlib import Path
 
-CACHE_DIR = Path(os.environ.get("CONNECTKIT_CACHE_DIR", Path.home() / ".cache" / "connectkit"))
-TTL_SECONDS = int(os.environ.get("CONNECTKIT_CACHE_TTL", "3600"))
+CACHE_DIR = Path(os.environ.get("SKILLS_CACHE_DIR", Path.home() / ".cache" / "skills"))
+TTL_SECONDS = int(os.environ.get("SKILLS_CACHE_TTL", "3600"))
 
 
 def _path(key: str) -> Path:

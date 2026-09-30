@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from connectkit import skills
+from skills import skills
 
 
 def test_scaffold_creates_expected_layout(tmp_path: Path):

@@ -10,8 +10,8 @@ import urllib.request
 
 from .config import Runtime, load
 
-TIMEOUT = int(os.environ.get("CONNECTKIT_TIMEOUT", "60"))
-RETRIES = int(os.environ.get("CONNECTKIT_RETRIES", "3"))
+TIMEOUT = int(os.environ.get("SKILLS_TIMEOUT", "60"))
+RETRIES = int(os.environ.get("SKILLS_RETRIES", "3"))
 BACKOFF = 0.5
 
 

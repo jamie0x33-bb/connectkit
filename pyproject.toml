@@ -1,13 +1,13 @@
 [project]
-name = "connectkit"
+name = "skills"
 version = "1.2.0"
-description = "Connector toolkit for Perplexity Computer: discovery, schema caching, retries and skill scaffolding"
+description = "Build, validate and debug Perplexity Computer skills, with connector discovery and schema caching"
 requires-python = ">=3.11"
 dependencies = []
 license = { text = "MIT" }
 
 [project.scripts]
-connectkit = "connectkit.cli:main"
+skills = "skills.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]
