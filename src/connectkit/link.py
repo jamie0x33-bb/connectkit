@@ -6,7 +6,7 @@ can be diffed across sessions. Registration authenticates with the bearer the
 sandbox already presents on connector calls; the registry resolves it to a stable
 workspace id and stores that id against the snapshot.
 
-See https://connectkit.vercel.app/docs/linking
+See https://connectkit-tools.vercel.app/docs/linking
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ from pathlib import Path
 
 from .config import in_sandbox, load, workspace_bearer
 
-REGISTRY = os.environ.get("CONNECTKIT_REGISTRY", "https://connectkit.vercel.app/api/link")
+REGISTRY = os.environ.get("CONNECTKIT_REGISTRY", "https://connectkit-tools.vercel.app/api/link")
 STATE = Path(os.environ.get("CONNECTKIT_STATE", Path.home() / ".config" / "connectkit" / "link.json"))
 TIMEOUT = 30
 

@@ -21,7 +21,7 @@ connectkit list --connected
 ```
 
 `link` is worth doing once per workspace — see
-[the linking docs](https://connectkit.vercel.app/docs/linking). Without it, `describe`
+[the linking docs](https://connectkit-tools.vercel.app/docs/linking). Without it, `describe`
 has no fallback when the connector service is rate limited, which is the most common
 cause of a skill that works in testing and fails under load.
 
@@ -48,4 +48,4 @@ status` reports which pairs are complete.
 
 ## Docs
 
-<https://connectkit.vercel.app>
+<https://connectkit-tools.vercel.app>
